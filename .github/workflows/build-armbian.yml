@@ -20,7 +20,7 @@ on:
       armbian_soc:
         description: "Select Amlogic SoC."
         required: false
-        default: "all"
+        default: "s912"
         type: choice
         options:
           - all
@@ -44,7 +44,7 @@ on:
       armbian_kernel:
         description: "Select kernel version."
         required: false
-        default: "5.10.135_5.15.50"
+        default: "5.17.0_5.18.0"
         type: choice
         options:
           - 5.4.210_5.10.135_5.15.50
@@ -132,7 +132,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Rebuild Armbian for Amlogic s9xxx
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: jurafish/amlogic-s9xxx-armbian@main
         if: ${{ steps.compile.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: armbian
